@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: bibliography_development
+  host: localhost
+  username: postgres
+  password: root
+  
+test:
+  <<: *default
+  database: bibliography_test
+  host: localhost
+  username: postgres
+  password: root
+
+production:
+  <<: *default
+  database: bibliography_production

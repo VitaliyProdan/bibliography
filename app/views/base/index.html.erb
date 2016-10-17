@@ -1,0 +1,11 @@
+<!-- We can now combine rows and columns when there's only one column in that row -->
+<div class="row medium-10 large-10 columns">
+  <div>
+    <h3>Введіть список бібліографічних описів в форму</h3>
+    <%= form_for(@biblio) do |f| %>
+      <%= f.text_area :text, rows: 10 %>
+     
+      <%= f.submit 'Обробка', class: 'expanded button' %>
+    <% end %>
+  </div>
+</div>

@@ -200,6 +200,7 @@ DEPENDENCIES
   foundation-rails
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   pg (~> 0.15)
   pry-byebug
   pry-rails

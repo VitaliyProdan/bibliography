@@ -12,8 +12,12 @@
     <tr>
       <td>1</td>
       <td><%= @biblio.text %></td>
-      <td><%= @biblio.text %></td>
-      <td><span class="success label"> Помилок не знайдено </span></td>
+      <td><%= @bibliography.name %></td>
+      <td>
+        <span class="<%= alert_class(@biblio.text, @bibliography.name)%> label">
+          <%= alert_text(@biblio.text, @bibliography.name) %>
+        </span>
+      </td>
     </tr>
   </tbody>
 </table>

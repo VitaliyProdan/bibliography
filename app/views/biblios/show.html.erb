@@ -5,6 +5,7 @@
       <th>№</th>
       <th>Первісна назва</th>
       <th>Результат обробки</th>
+      <th>Посилання</th>
       <th>Висновок</th>
     </tr>
   </thead>
@@ -13,6 +14,9 @@
       <td>1</td>
       <td><%= @biblio.text %></td>
       <td><%= @bibliography.name %></td>
+      <td class="longLink">
+        <%= link_to nil, @bibliography.link, target: '_blank' %>    
+      </td>
       <td>
         <span class="<%= alert_class(@biblio.text, @bibliography.name)%> label">
           <%= alert_text(@biblio.text, @bibliography.name) %>

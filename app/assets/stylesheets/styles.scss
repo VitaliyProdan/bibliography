@@ -5,3 +5,9 @@
 .subheader {
   color: #ffffff;
 }
+.longLink {
+  overflow: hidden;
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

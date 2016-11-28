@@ -7,7 +7,8 @@ class BibliosController < ApplicationController
 
   def show
     @biblio = Biblio.find(params[:id])
-    @bibliography = Parsers::Bibliography.new(@biblio.text)
+    name = Parsers::LocalParser.new.pull_name(@biblio.text)
+    @bibliography = Parsers::IrbisBibliography.new(name.strip)
   end
 
   private

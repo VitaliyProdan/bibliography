@@ -1,15 +1,10 @@
 module Parsers
-  class Bibliography
+  class IrbisBibliography
     EDITION_SELECTOR = 'p[style="margin-bottom:6pt;margin-top:10pt;' \
       'text-align:justify;font-size:12.0pt"]'.freeze
 
     def initialize(query)
       self.query = URI.escape query
-    end
-
-    def categorize_listing
-      page_content.css('td.main_content table.advanced').each do |el|
-      end
     end
 
     def author
@@ -19,8 +14,10 @@ module Parsers
     end
 
     def name
+      self.link = search_query(true)
       edition = page_content(true).css(EDITION_SELECTOR).first.try(:text)
       if edition.blank?
+        self.link = search_query(false)
         article = page_content(false).css(
           'td.main_content table.advanced td[width="95%"]'
         )
@@ -30,9 +27,9 @@ module Parsers
       end
     end
 
-    private
+    attr_accessor :query, :link
 
-    attr_accessor :query
+    private
 
     def page_content(is_edition = true)
       Nokogiri::HTML(http_open(search_query(is_edition)))
@@ -60,7 +57,7 @@ module Parsers
         stop = element.name == 'br'
         text << element.text
       end
-      text.strip
+      text.squish.strip
     end
   end
 end

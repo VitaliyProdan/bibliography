@@ -4,7 +4,9 @@ module Parsers
       'text-align:justify;font-size:12.0pt"]'.freeze
 
     def initialize(query)
-      self.query = URI.escape query
+      self.original_text = query
+      name = Parsers::LocalParser.new.pull_name(query).strip
+      self.query = URI.escape name
     end
 
     def author
@@ -27,7 +29,7 @@ module Parsers
       end
     end
 
-    attr_accessor :query, :link
+    attr_accessor :query, :link, :original_text
 
     private
 
@@ -58,6 +60,7 @@ module Parsers
         text << element.text
       end
       text.squish.strip
+      author.blank? ? text.squish.strip : author + ' ' + text.squish.strip
     end
   end
 end

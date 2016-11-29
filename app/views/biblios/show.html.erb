@@ -10,18 +10,24 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td><%= @biblio.text %></td>
-      <td><%= @bibliography.name %></td>
-      <td class="longLink">
-        <%= link_to nil, @bibliography.link, target: '_blank' %>    
-      </td>
-      <td>
-        <span class="<%= alert_class(@biblio.text, @bibliography.name)%> label">
-          <%= alert_text(@biblio.text, @bibliography.name) %>
-        </span>
-      </td>
-    </tr>
+    <% @biblios.split.each_with_index do |biblio, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= biblio.original_text %></td>
+        <td><%= biblio.name || '-' %></td>
+        <td class="longLink">
+          <% if biblio.name.blank? %>
+            -
+          <% else %>
+            <%= link_to nil, biblio.link, target: '_blank' %>
+          <% end %>
+        </td>
+        <td>
+          <span class="<%= alert_class(biblio.original_text, biblio.name)%> label">
+            <%= alert_text(biblio.original_text, biblio.name) %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>

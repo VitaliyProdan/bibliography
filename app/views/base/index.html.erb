@@ -3,8 +3,6 @@
     <h3>Введіть список бібліографічних описів в форму</h3>
     <%= form_for(@biblio) do |f| %>
 
-      <%#= f.file :text, rows: 10 %>
-
       <%= f.file_field :txt %>
      
       <%= f.submit 'Обробка', class: 'expanded button' %>
